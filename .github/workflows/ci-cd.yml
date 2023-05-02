@@ -37,14 +37,14 @@ jobs:
           
       - name: download, run httpd image, container name serving_base
         run: |
-          docker run -d --name serving_base httpd
+          docker run -d --name serving_bas httpd
           
       - name: cp angular build to container
         run: |
-          docker cp build/.  serving_base:/usr/local/apache2/htdocs
+          docker cp build/.  serving_bas:/usr/local/apache2/htdocs
           
       - name: Build the custom Docker image
-        run: docker commit --change "ENV MODEL_NAME ${{secrets.MODEL_NAME}}" serving_base ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}}
+        run: docker commit --change "ENV MODEL_NAME ${{secrets.MODEL_NAME}}" serving_bas ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}}
 
       - name: show docker images
         run: docker images
